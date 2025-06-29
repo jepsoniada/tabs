@@ -1,0 +1,15 @@
+{
+    "name": "tabs",
+    "version": "1.0",
+    "description": "test for tabs functionality",
+    "manifest_version": 3,
+    "permissions": [
+        "tabs", "activeTab"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "action": {
+        "default_popup": "bg.html"
+    }
+}

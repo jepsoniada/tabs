@@ -1,0 +1,735 @@
+<body style="display: flex; gap: 1rem">
+  <div class="feature">
+    <h1>window</h1>    
+    <div>
+      <template shadowrootmode="open">
+        <div class="window">
+          <h1>qwer-1234-asdf 🥈</h1>
+          <label>
+            <input type="checkbox">
+            <div class="tab">
+              <span>🦄 org mode and shi.</span>
+            </div>
+          </label>
+          <label>
+            <input type="checkbox">
+            <div class="tab">
+              <span>📹 video - tube.com</span>
+            </div>
+          </label>
+          <label>
+            <input type="checkbox">
+            <div class="tab">
+              <span>📖 skewl site</span>
+            </div>
+          </label>
+          <label>
+            <input type="checkbox">
+            <div class="tab">
+              <span>📫 skewl mail</span>
+            </div>
+          </label>
+        </div>
+
+        <style>
+          .window {
+              --grey: #dadce0;
+              --blue: #8ab4f8;
+              --red: #f28b82;
+              --yellow: #fdd663;
+              --green: #81c995;
+              --pink: #ff8bcb;
+              --purple: #c58af9;
+              --cyan: #78d9ec;
+              --orange: #fcad70;
+              
+              --font: #222;
+              --window: #eee;
+              --window-font: grey;
+              --window-padding: .5rem;
+              --select-1: #eef;
+              --select-2: #9fa7ff;
+              --tab: white;
+              --tab-width: 15rem;
+              --tab-padding: .75rem;
+              --tab-radius: .5rem;
+
+              color: var(--font);
+              font-family: mono;
+              font-size: .8rem;
+              max-width: min-content;
+              min-width: var(--tab-width);
+              padding: 1rem var(--window-padding) var(--window-padding) var(--window-padding);
+              border-radius: calc(var(--window-padding) + var(--tab-radius))/* .5rem; */;
+              background: var(--window);
+              user-select: none;
+              display: flex;
+              flex-direction: column;
+              gap: .25rem;
+
+              & h1 {
+                  color: var(--window-font);
+                  margin: 0;
+                  margin-left: 1rem;
+                  margin-bottom: 1em;
+                  font-size: 1em;
+              }
+
+              & label {
+                  display: flex;
+
+                  & [type=checkbox] {
+                      position: absolute;
+                      opacity: 0;
+                      z-index: -1;
+                  }
+              }
+              
+              & .tab {
+                  height: 2rem;
+                  width: calc(var(--tab-width) - var(--tab-padding) * 2);
+                  padding-inline: var(--tab-padding);
+                  background: var(--tab);
+                  border-radius: var(--tab-radius);
+                  display: flex;
+                  align-items: center;
+
+                  & > * {
+                      height: min-content;
+                  }
+
+                  :has(:checked) > & {
+                      background: var(--select-1);
+                      outline: 1px var(--select-2) solid;
+                  }
+
+                  :has(:focus) > & {
+                      outline: .2rem black dotted;
+                  }
+              }
+          }
+        </style>
+      </template>
+    </div>
+    <div>
+      <template shadowrootmode="open">
+        <div class="window">
+          <h1>qwer-1234-asdf 🥇</h1>
+          <div class="tabs">
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>🦄 Org mode and shi.</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>📹 video - tube.com</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>📖 skewl site</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>📫 skewl mail</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>🕳️ hole</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>🕳️ hole</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>🕳️ hole</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>🕳️ hole</span>
+              </div>
+              
+            </label>
+          </div>
+        </div>
+
+        <style>
+          .window {
+              --grey: #dadce0;
+              --blue: #8ab4f8;
+              --red: #f28b82;
+              --yellow: #fdd663;
+              --green: #81c995;
+              --pink: #ff8bcb;
+              --purple: #c58af9;
+              --cyan: #78d9ec;
+              --orange: #fcad70;
+              
+              --font: #222;
+              --window: #eee;
+              --window-font: grey;
+              --window-padding: .5rem;
+              --window-radius: calc(var(--window-padding)
+                                    + var(--tab-radius)
+                                    + var(--window-padding));
+              --select-1: #eef;
+              --select-2: #9fa7ff;
+              --tab: white;
+              --tab-width: 15rem;
+              --tab-padding: .75rem;
+              --tab-radius: .5rem;
+              --tabs-radius: calc(var(--window-padding) + var(--tab-radius));
+              --tabs-gap: .25rem;
+
+              color: var(--font);
+              font-family: mono;
+              font-size: .8rem;
+              max-width: min-content;
+              min-width: var(--tab-width);
+              padding: var(--window-padding);
+              border-radius: var(--window-radius);
+              background: var(--window);
+              user-select: none;
+
+              & h1 {
+                  color: var(--window-font);
+                  margin: calc(1rem - var(--window-padding)) 1rem 1rem 1rem;
+                  font-size: 1em;
+              }
+
+              & .tabs {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 1px;
+                  background: var(--tab);
+                  border-radius: var(--tabs-radius);
+
+                  & label {
+                      display: flex;
+                      padding: var(--window-padding);
+                      
+                      &:nth-child(n + 2) { /* bottom */
+                          padding-top: calc(var(--tabs-gap) / 2);
+                      }
+
+                      &:nth-last-child(n + 2) { /* top */
+                          padding-bottom: calc(var(--tabs-gap) / 2);
+                      }
+
+                      & [type=checkbox] {
+                          position: absolute;
+                          opacity: 0;
+                          z-index: -1;
+                      }
+                      &:nth-child(n + 2)::before {
+                          content: '';
+                          width: calc(var(--tab-width) - var(--tab-padding) * 2);
+                          position: absolute;
+                          translate: var(--tab-padding)
+                                     calc(-1 * (1px + var(--tabs-gap) / 2));
+                          border-top: 1px var(--window) solid;
+                      }
+                  }
+              }
+
+              & .tab {
+                  height: 2rem;
+                  width: calc(var(--tab-width) - var(--tab-padding) * 2);
+                  padding-inline: var(--tab-padding);
+                  background: var(--tab);
+                  border-radius: var(--tab-radius);
+                  display: flex;
+                  align-items: center;
+                  z-index: 1;
+
+                  & > * {
+                      height: min-content;
+                  }
+
+                  :has(:checked) > & {
+                      background: var(--select-1);
+                      outline: 1px var(--select-2) solid;
+                  }
+
+                  :has(:focus) > & {
+                      outline: .2rem black dotted;
+                  }
+              }
+          }
+        </style>
+      </template>
+    </div>
+  </div>
+  <div class="feature">
+    <h1>groups</h1>    
+    <div>
+      <template shadowrootmode="open">
+        
+        <div class="group" purple>
+          <h1>skewl 🥇</h1>              
+          <div class="tabs">
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>📖 skewl site</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>📫 skewl mail</span>
+              </div>
+              
+            </label>
+          </div>
+        </div>
+        
+        <style>
+          :host {
+              
+              --grey: #dadce0;
+              --blue: #8ab4f8;
+              --red: #f28b82;
+              --yellow: #fdd663;
+              --green: #81c995;
+              --pink: #ff8bcb;
+              --purple: #c58af9;
+              --cyan: #78d9ec;
+              --orange: #fcad70;
+              
+              --font: #222;
+              --window: #eee;
+              --window-font: grey;
+              --window-padding: .5rem;
+              --window-radius: calc(var(--window-padding)
+                                    + var(--tab-radius)
+                                    + var(--window-padding));
+              --select-1: #eef;
+              --select-2: #9fa7ff;
+              --tab: white;
+              --tab-width: 15rem;
+              --tab-padding: .75rem;
+              --tab-radius: .5rem;
+              --tabs: var(--tab);
+              --tabs-radius: calc(var(--window-padding) + var(--tab-radius));
+              --tabs-gap: .25rem;
+              --group: var(--grey);
+
+              display: flex;
+
+          }
+          
+          [grey] {
+              --group: var(--grey);
+          }
+          [blue] {
+              --group: var(--blue);
+          }
+          [red] {
+              --group: var(--red);
+          }
+          [yellow] {
+              --group: var(--yellow);
+          }
+          [green] {
+              --group: var(--green);
+          }
+          [pink] {
+              --group: var(--pink);
+          }
+          [purple] {
+              --group: var(--purple);
+          }
+          [cyan] {
+              --group: var(--cyan);
+          }
+          [orange] {
+              --group: var(--orange);
+          }
+
+          .window, .group {
+              font-size: .8rem;
+
+              & h1 {
+                  color: var(--window-font);
+                  margin: calc(1rem - var(--window-padding)) 1rem 1rem 1rem;
+                  font-size: 1em;
+              }
+          }
+
+          .window {
+              color: var(--font);
+              font-family: mono;
+              max-width: min-content;
+              min-width: var(--tab-width);
+              padding: var(--window-padding);
+              border-radius: var(--window-radius);
+              background: var(--window);
+              user-select: none;
+
+              & h1 {
+                  margin: calc(1rem - var(--window-padding)) 1rem 1rem 1rem;
+              }              
+          }
+          
+          .tabs {
+              display: flex;
+              flex-direction: column;
+              gap: 1px;
+              background: var(--tabs);
+              border-radius: var(--tabs-radius);
+
+              & label {
+                  display: flex;
+                  padding: var(--window-padding);
+                  
+                  &:nth-child(n + 2) { /* bottom */
+                      padding-top: calc(var(--tabs-gap) / 2);
+                  }
+
+                  &:nth-last-child(n + 2) { /* top */
+                      padding-bottom: calc(var(--tabs-gap) / 2);
+                  }
+
+                  & [type=checkbox] {
+                      position: absolute;
+                      opacity: 0;
+                      z-index: -1;
+                  }
+                  &:nth-child(n + 2)::before {
+                      content: '';
+                      width: calc(var(--tab-width) - var(--tab-padding) * 2);
+                      position: absolute;
+                      translate: var(--tab-padding)
+                                 calc(-1 * (1px + var(--tabs-gap) / 2));
+                      border-top: 1px var(--window) solid;
+                  }
+              }
+          }
+          
+          .tab {
+              height: 2rem;
+              width: calc(var(--tab-width) - var(--tab-padding) * 2);
+              padding-inline: var(--tab-padding);
+              background: var(--tab);
+              border-radius: var(--tab-radius);
+              display: flex;
+              align-items: center;
+              z-index: 1;
+
+              & > * {
+                  height: min-content;
+              }
+
+              :has(:checked) > & {
+                  background: var(--select-1);
+                  outline: 1px var(--select-2) solid;
+              }
+
+              :has(:focus) > & {
+                  outline: .2rem black dotted;
+              }
+          }
+          
+          .group {
+              --tabs: var(--group);
+              --window-font: white;
+              background: var(--tabs);
+              border-radius: var(--tabs-radius);
+              & label::before {
+                  display: none;
+              }
+              & h1 {
+                  margin: 1rem 1rem .5rem 1rem;
+                  max-width: 7.5rem;
+              }
+          }
+        </style>
+      </template>
+    </div>
+  </div>
+  <div class="feature">
+    <h1>windows + groups</h1>    
+    <div>
+      <template shadowrootmode="open">
+        
+        <div class="window">
+          <h1>qwer-1234-asdf</h1>
+          <div class="tabs">
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>🦄 Org mode and shi.</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>📹 video - tube.com</span>
+              </div>
+              
+            </label>
+            <div class="group" red>
+              <h1>skewl</h1>              
+              <div class="tabs">
+                <label>
+                  <input type="checkbox">
+                  <div class="tab">
+                    <span>📖 skewl site</span>
+                  </div>
+                  
+                </label>
+                <label>
+                  <input type="checkbox">
+                  <div class="tab">
+                    <span>📫 skewl mail</span>
+                  </div>
+                  
+                </label>
+              </div>
+            </div>
+            <div class="group" yellow>
+              <h1>hole</h1>
+              <div class="tabs">
+                <label>
+                  <input type="checkbox">
+                  <div class="tab">
+                    <span>🕳️ hole</span>
+                  </div>
+                  
+                </label>
+              </div>
+            </div>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>🕳️ hole</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>🕳️ hole</span>
+              </div>
+              
+            </label>
+            <label>
+              <input type="checkbox">
+              <div class="tab">
+                <span>🕳️ hole</span>
+              </div>
+              
+            </label>
+          </div>
+        </div>
+        
+        <style>
+          :host {
+              
+              --grey: #dadce0;
+              --blue: #8ab4f8;
+              --red: #f28b82;
+              --yellow: #fdd663;
+              --green: #81c995;
+              --pink: #ff8bcb;
+              --purple: #c58af9;
+              --cyan: #78d9ec;
+              --orange: #fcad70;
+              
+              --font: #222;
+              --window: #eee;
+              --window-font: grey;
+              --window-padding: .5rem;
+              --window-radius: calc(var(--window-padding)
+                                    + var(--tab-radius)
+                                    + var(--window-padding));
+              --select-1: #eef;
+              --select-2: #9fa7ff;
+              --tab: white;
+              --tab-width: 15rem;
+              --tab-padding: .75rem;
+              --tab-radius: .5rem;
+              --tabs: var(--tab);
+              --tabs-radius: calc(var(--window-padding) + var(--tab-radius));
+              --tabs-gap: .25rem;
+              --group: var(--grey);
+
+              display: flex;
+
+          }
+          
+          [grey] {
+              --group: var(--grey);
+          }
+          [blue] {
+              --group: var(--blue);
+          }
+          [red] {
+              --group: var(--red);
+          }
+          [yellow] {
+              --group: var(--yellow);
+          }
+          [green] {
+              --group: var(--green);
+          }
+          [pink] {
+              --group: var(--pink);
+          }
+          [purple] {
+              --group: var(--purple);
+          }
+          [cyan] {
+              --group: var(--cyan);
+          }
+          [orange] {
+              --group: var(--orange);
+          }
+
+          .window, .group {
+              font-size: .8rem;
+
+              & h1 {
+                  color: var(--window-font);
+                  margin: calc(1rem - var(--window-padding)) 1rem 1rem 1rem;
+                  font-size: 1em;
+              }
+          }
+
+          .window {
+              color: var(--font);
+              font-family: mono;
+              max-width: min-content;
+              min-width: var(--tab-width);
+              padding: var(--window-padding);
+              border-radius: var(--window-radius);
+              background: var(--window);
+              user-select: none;
+
+              & h1 {
+                  margin: calc(1rem - var(--window-padding)) 1rem 1rem 1rem;
+              }              
+          }
+          
+          .tabs {
+              display: flex;
+              flex-direction: column;
+              gap: 1px;
+              background: var(--tabs);
+              border-radius: var(--tabs-radius);
+
+              & label {
+                  display: flex;
+                  padding: var(--window-padding);
+                  
+                  &:nth-child(n + 2) { /* bottom */
+                      padding-top: calc(var(--tabs-gap) / 2);
+                  }
+
+                  &:nth-last-child(n + 2) { /* top */
+                      padding-bottom: calc(var(--tabs-gap) / 2);
+                  }
+
+                  & [type=checkbox] {
+                      position: absolute;
+                      opacity: 0;
+                      z-index: -1;
+                  }
+                  &:nth-child(n + 2)::before {
+                      content: '';
+                      width: calc(var(--tab-width) - var(--tab-padding) * 2);
+                      position: absolute;
+                      translate: var(--tab-padding)
+                                 calc(-1 * (1px + var(--tabs-gap) / 2));
+                      border-top: 1px var(--window) solid;
+                  }
+
+                  .group + &::before {
+                      display: none;
+                  }
+              }
+          }
+          
+          .tab {
+              height: 2rem;
+              width: calc(var(--tab-width) - var(--tab-padding) * 2);
+              padding-inline: var(--tab-padding);
+              background: var(--tab);
+              border-radius: var(--tab-radius);
+              display: flex;
+              align-items: center;
+              z-index: 1;
+
+              & > * {
+                  height: min-content;
+              }
+
+              :has(:checked) > & {
+                  background: var(--select-1);
+                  outline: 1px var(--select-2) solid;
+                  .group & {
+                      outline-style: none;
+                  }
+              }
+
+              :has(:focus) > & {
+                  outline: .2rem var(--window-font) dotted;
+              }
+          }
+          
+          .group {
+              --tabs: var(--group);
+              --window-font: white;
+              background: var(--tabs);
+              border-radius: var(--tabs-radius);
+              & label::before {
+                  display: none;
+              }
+              & h1 {
+                  margin: 1rem 1rem .5rem 1rem;
+                  max-width: 7.5rem;
+              }
+          }
+        </style>
+      </template>
+    </div>
+  </div>
+  <style>
+    .feature {
+        font-family: mono;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    h1 {
+        width: calc(8ch);
+        text-align: center;
+    } 
+  </style>
+</body>
