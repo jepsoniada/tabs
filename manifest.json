@@ -4,11 +4,12 @@
     "description": "test for tabs functionality",
     "manifest_version": 3,
     "permissions": [
-        "tabs", "activeTab"
+        "tabs", "activeTab", "tabGroups"
     ],
     "host_permissions": [
         "<all_urls>"
     ],
+    "options_page": "./options.html",
     "action": {
         "default_popup": "bg.html"
     }

@@ -1,0 +1,270 @@
+body {
+    font-family: mono;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+:root {
+
+    --grey: hsl(220 8% 80%);
+    --blue: hsl(217 88% 75%);
+    --red: hsl(4 81% 72%);
+    --yellow: hsl(44 97% 69%);
+    --green: hsl(136 40% 64%);
+    --pink: hsl(326 100% 77%);
+    --purple: hsl(271 90% 75%);
+    --cyan: hsl(189 75% 69%);
+    --orange: hsl(26 95% 71%);
+    
+    --_color: #222;
+    --window_background: #eee;
+    --window_color: #707070;
+    --window_padding: .5rem;
+    --window_radius: calc(var(--window_padding)
+                          + var(--tab_radius)
+                          + var(--window_padding));
+    --select_background: hsl(215 100% 90%);
+    --tab_background: white;
+    --tab_width: 13.5rem;
+    --tab_padding: .75rem;
+    --tab_radius: .5rem;
+    --tab-size-x: calc(var(--tab_width)
+                       + var(--tab_padding) * 2);
+    --tabs_background: var(--tab_background);
+    --tabs_radius: calc(var(--window_padding) + var(--tab_radius));
+    --tabs_gap: .25rem;
+    --group: var(--grey);
+
+    --delete_color: hsl(0 75% 60%);
+
+}
+
+[data-color=grey] {
+    --group: var(--grey);
+}
+[data-color=blue] {
+    --group: var(--blue);
+}
+[data-color=red] {
+    --group: var(--red);
+}
+[data-color=yellow] {
+    --group: var(--yellow);
+}
+[data-color=green] {
+    --group: var(--green);
+}
+[data-color=pink] {
+    --group: var(--pink);
+}
+[data-color=purple] {
+    --group: var(--purple);
+}
+[data-color=cyan] {
+    --group: var(--cyan);
+}
+[data-color=orange] {
+    --group: var(--orange);
+}
+
+window-list- {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 100%;
+    scroll-snap-type: y mandatory;
+
+    & > :nth-child(-n + 1) {
+        margin-top: 50vh;
+        /* margin-top: calc(50vh */
+        /*                  - var(--window_padding) */
+        /*                  - (1rem - var(--window_padding)) - 1rem - 1rem */
+        /*                  - var(--window_padding) */
+        /*                  - (2rem / 2)); */
+    }
+    & > :nth-last-child(-n + 1) {
+        margin-bottom: 50vh;
+        /* margin-bottom: calc(50vh */
+        /*                     - var(--window_padding) */
+        /*                     - var(--window_padding) */
+        /*                     - (2rem / 2)); */
+    }
+}
+
+main- {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    white-space: nowrap;
+
+    &::before {
+        content: '>';
+        font-size: 4rem;
+        /* position: relative; */
+        /* right: -2%; */
+        z-index: 2;
+    }
+    &::after {
+        content: '<';
+        font-size: 4rem;
+        z-index: 2;
+    }
+}
+
+window-, group- {
+    display: block;
+    font-size: .8rem;
+
+    & > h1 {
+        color: var(--window_color);
+        margin: calc(1rem - var(--window_padding)) 1rem 1rem 1rem;
+        font-size: 1em;
+        width: var(--tab_width);
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+
+window- {
+    color: var(--_color);
+    max-width: min-content;
+    min-width: var(--tab-size-x);
+    padding: var(--window_padding);
+    border-radius: var(--window_radius);
+    background: var(--window_background);
+    user-select: none;
+
+    & > h1 {
+        margin: calc(1rem - var(--window_padding)) 1rem 1rem 1rem;
+    }              
+}
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--tabs_background);
+    border-radius: var(--tabs_radius);
+
+    & > label {
+        display: flex;
+        padding: var(--window_padding);
+        position: relative;
+        
+        &:nth-child(n + 2) { /* bottom */
+            padding-top: calc(var(--tabs_gap) / 2);
+        }
+
+        &:nth-last-child(n + 2) { /* top */
+            padding-bottom: calc(var(--tabs_gap) / 2);
+        }
+
+        & [type=checkbox] {
+            position: absolute;
+            opacity: 0;
+            z-index: -1;
+        }
+        &:nth-child(n + 2)::before {
+            content: '';
+            width: var(--tab_width);
+            position: absolute;
+            translate: var(--tab_padding)
+                       calc(-1 * (1px + var(--tabs_gap) / 2));
+            border-top: 1px var(--window_background) solid;
+        }
+
+        group- + &::before {
+            display: none;
+        }
+    }
+}
+
+.tab {
+    height: 2rem;
+    width: var(--tab_width);
+    padding-inline: var(--tab_padding);
+    background: var(--tab_background);
+    border-radius: var(--tab_radius);
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    scroll-snap-align: center;
+
+    & > * {
+        height: min-content;
+    }
+
+    :has(:checked) > & {
+        background: var(--select_background);
+    }
+
+    :has(:focus) > & {
+        outline: .2rem var(--window_color) dotted;
+    }
+}
+
+group- {
+    --tabs_background: var(--group);
+    --window_color: white;
+    background: var(--tabs_background);
+    border-radius: var(--tabs_radius);
+    & label::before {
+        display: none;
+    }
+    & > h1 {
+        margin: 1rem 1rem .5rem 1rem;
+        max-width: 7.5rem;
+    }
+}
+
+.icon {
+    display: inline-block;
+    background: var(--tab_background);
+    aspect-ratio: 1/1;
+    height: 1.125rem;
+    text-align: center;
+    border-radius: 100%;
+    background-repeat: no-repeat;
+    background-position: center 60%;
+    background-size: 80%;
+}
+
+.title {
+    padding-left: 1ch;
+    height: 1.125rem;
+    width: calc(var(--tab_width) - 1.125rem - 1ch);
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+}
+
+.incognito {
+    --grey: hsl(220 8% 75%);
+    --blue: hsl(217 88% 65%);
+    --red: hsl(4 81% 65%);
+    --yellow: hsl(38 97% 65%);
+    --green: hsl(136 40% 55%);
+    --pink: hsl(326 100% 70%);
+    --purple: hsl(271 90% 70%);
+    --cyan: hsl(189 70% 60%);
+    --orange: hsl(26 95% 65%);
+    
+    /* --tab_background: #4f4f4f; */
+    --tab_background: rgb(90 79 79);
+    --_color: white;
+    --window_color: #a0a0a0;
+    /* --window_background: #333; */
+    --window_background: rgb(65 51 51);
+    --tabs_background: var(--tab_background);
+    --select_background: hsl(215 30% 60%)/* hsl(221 20% 50%) */;
+}
