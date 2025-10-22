@@ -45,17 +45,36 @@ export class Delete extends Action {
 
 export class Move extends Action {
     static priority = 0    
-    tabId = undefined
-    windowId = undefined
+    #tabId = undefined
+    #container = undefined
     constructor(tabId, destination) {
         super()
-        this.tabId = tabId
-        this.windowId = destination
+        if (!(destination instanceof Container)) {
+            throw "not container"
+        }
+        this.#tabId = tabId
+        this.#container = destination
     }
     async execute() {
-        await chrome.tabs.move(this.tabId, {
-            index: -1,
-            windowId: this.windowId,
-        })
+        if (this.#container instanceof Window) {
+            await chrome.tabs.move(this.#tabId, {
+                index: -1,
+                windowId: this.#container.id,
+            })    
+        } else if (this.#container instanceof Group) {
+            await chrome.tabs.group({
+                groupId: this.#container.id,
+                tabIds: this.#tabId,
+            })
+        }
     }
 }
+
+export class Container {
+    id = undefined
+    constructor(id) {
+        this.id = id
+    }
+}
+export class Window extends Container {}
+export class Group extends Container {}

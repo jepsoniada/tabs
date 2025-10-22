@@ -1,12 +1,12 @@
 import { webComponent } from "./util.js"
-import { Move, Delete, record } from "./engine.js" 
+import { Window, Group, Move, Delete, record } from "./engine.js"
 
 //
 customElements.define("tab-", class extends webComponent(HTMLLabelElement) {
     static observedAttributes = ["data-id"]
     id = undefined
     state = undefined // (TYPE extends Action && !Action) | undefined
-    windowId = undefined
+    container = undefined
     constructor () {
 	super(document.querySelector("#tab-"))
         this.querySelector("input").addEventListener("focus", (event) => {
@@ -24,7 +24,7 @@ customElements.define("tab-", class extends webComponent(HTMLLabelElement) {
             }
         })
         this.addEventListener("transpose", ({ detail: { destination } }) => {
-            record.push(new Move(this.id, destination.id))
+            record.push(new Move(this.id, destination))
             if (record.mode == "retained") {
                 this.querySelector(`.icon`).textContent = "T"
                 Object.assign(this.querySelector(`.icon`).style, {
@@ -39,9 +39,11 @@ customElements.define("tab-", class extends webComponent(HTMLLabelElement) {
         await ({
             ["data-id"]: async (value) => {
                 this.id = Number(value)
-                const { windowId, title, favIconUrl }
+                const { windowId, groupId, title, favIconUrl }
                       = (await chrome.tabs.get(this.id))
-                this.windowId = windowId
+                this.container = groupId != -1
+                    ? new Group(groupId)
+                    : new Window(windowId);
                 this.querySelector(".title").textContent
                     = title
                 this.querySelector(".icon").style.backgroundImage
@@ -173,16 +175,7 @@ customElements.define("main-", class extends webComponent(HTMLElement) {
                 },
                 "t": () => this.dispatchToActiveTabs(new CustomEvent("transpose", {
                     detail: {
-                        destination: (() => {
-                            const windowId = this.inactiveSide.lazyFocusedTab().windowId
-                            return this.inactiveSide.querySelector(
-                                `window-[data-id="${windowId}"]`
-                            )
-                        })()
-                        // console.log(
-                        //     
-                        // )
-                        ,
+                        destination: this.inactiveSide.lazyFocusedTab().container,
                     },
                 })),
                 "g": () => this.refresh(),
