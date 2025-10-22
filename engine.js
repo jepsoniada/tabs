@@ -1,5 +1,6 @@
 class Yeah extends Array {
     mode = "immediate" // "immediate" | "retained"
+    active = 0
     set mode(value) {
         if (value != "immediate" && value != "retained") {
             throw `"immediate" | "retained"`
@@ -7,16 +8,19 @@ class Yeah extends Array {
             mode = value
         }
     }
-    push(...values) {
+    async push(...values) {
         super.push(...values)
         if (this.mode == "immediate") {
-            this.execute()
-            document.querySelector("main-").refresh()
+            await this.execute()
+            this.active--
+            if (this.active == 0) {
+                document.querySelector("main-").refresh()
+            }
         }
     }
     
-    execute () {
-        this.pop().execute()
+    async execute () {
+        await this.pop().execute()
     }
     parse () {}
 }
@@ -35,7 +39,7 @@ export class Delete extends Action {
         this.tabId = tabId
     }
     async execute() {
-        chrome.tabs.remove(this.tabId)
+        await chrome.tabs.remove(this.tabId)
     }
 }
 
@@ -49,7 +53,7 @@ export class Move extends Action {
         this.windowId = destination
     }
     async execute() {
-        chrome.tabs.move(this.tabId, {
+        await chrome.tabs.move(this.tabId, {
             index: -1,
             windowId: this.windowId,
         })

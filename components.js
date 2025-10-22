@@ -15,20 +15,24 @@ customElements.define("tab-", class extends webComponent(HTMLLabelElement) {
         })
         this.addEventListener("delete", (event) => {
             record.push(new Delete(this.id))
-            this.querySelector(`.icon`).textContent = "D"
-            Object.assign(this.querySelector(`.icon`).style, {
-                background: "var(--delete_color)",
-                color: "white",
-            })
+            if (record.mode == "retained") {
+                this.querySelector(`.icon`).textContent = "D"
+                Object.assign(this.querySelector(`.icon`).style, {
+                    background: "var(--delete_color)",
+                    color: "white",
+                })
+            }
         })
         this.addEventListener("transpose", ({ detail: { destination } }) => {
             record.push(new Move(this.id, destination.id))
-            this.querySelector(`.icon`).textContent = "T"
-            Object.assign(this.querySelector(`.icon`).style, {
-                background: "#00f",
-                color: "white",
-            })
-            destination.querySelector(".tabs").insertAdjacentElement("afterbegin", this)
+            if (record.mode == "retained") {
+                this.querySelector(`.icon`).textContent = "T"
+                Object.assign(this.querySelector(`.icon`).style, {
+                    background: "#00f",
+                    color: "white",
+                })
+            }
+            // destination.querySelector(".tabs").insertAdjacentElement("afterbegin", this)
         })
     }
     async attributeChangedCallback(name, _, value) {
@@ -129,7 +133,10 @@ customElements.define("window-list-", class extends webComponent(HTMLElement) {
         this.addEventListener("tabFocus", (event) => {
             this.lazyFocusedTab = () => event.target
         })
-        this.addEventListener("reload", this.connectedCallback)
+        this.addEventListener("reload", async () => {
+            this.windows = undefined
+            await this.connectedCallback()
+        })
     }
     async connectedCallback() {
         this.windows = this.windows ?? await chrome.windows.getAll()
@@ -218,6 +225,7 @@ customElements.define("main-", class extends webComponent(HTMLElement) {
             this.activeSide
                 .querySelectorAll(`[is="tab-"]:has(input:checked)`)
         )
+        record.active = markedTabs.length
         markedTabs.forEach((a) => a.dispatchEvent(event))
     }
     get activeSide() {
